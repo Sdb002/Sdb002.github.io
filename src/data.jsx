@@ -26,9 +26,23 @@ export const STACK = [
 ];
 
 /*
+ * A screenshot in public/projects/. `w`/`h` are the file's real pixel size
+ * (they reserve layout space before it loads). `fit: "contain"` letterboxes
+ * shots whose shape doesn't suit the card frame instead of cropping them.
+ */
+const shot = (path, w, h, caption, fit) => ({
+  src: `${import.meta.env.BASE_URL}projects/${path}.webp`,
+  w,
+  h,
+  caption,
+  fit,
+});
+
+/*
  * Hand-written project cards. `repo` is the GitHub repo name; it builds the
  * link and pulls live star counts. `path` deep-links into the repo instead.
- * `featured` and `wide` cards span the full row of the work grid.
+ * `featured` and `wide` cards span the full row of the work grid. `shots` are
+ * captured from the running apps; `ratio` sets the screenshot frame's shape.
  */
 export const PROJECTS = [
   {
@@ -36,6 +50,12 @@ export const PROJECTS = [
     repo: "ProcessGuard_Pro",
     featured: true,
     meta: "team lead · 5 people",
+    ratio: "9 / 8",
+    shots: [
+      shot("processguard/monitor", 900, 800, "Monitor: live CPU/RAM graphs over the process table"),
+      shot("processguard/autokill", 900, 800, "Auto-kill rules: regex + CPU/memory thresholds held for a duration"),
+      shot("processguard/alertlog", 900, 800, "Alert log"),
+    ],
     tags: ["Python", "DearPyGUI", "psutil", "SQLite", "Docker", "FastAPI"],
     body: (
       <>
@@ -52,6 +72,10 @@ export const PROJECTS = [
     repo: "C-Analyzer",
     meta: "compiler engineering",
     tags: ["Python", "PySide6", "Pratt parser", "AST", "ReportLab"],
+    shots: [
+      shot("c-analyzer/ast", 1280, 786, "Live AST of sample.c, with token count and Big-O estimate"),
+      shot("c-analyzer/tokens", 1280, 786, "Token stream inspector"),
+    ],
     body: (
       <>
         A C source analyzer with a <b>parser I wrote by hand</b> — no parser generator. It tokenizes,
@@ -65,6 +89,11 @@ export const PROJECTS = [
     repo: "daq-iot",
     meta: "instrumentation & control",
     tags: ["Python", "MQTT", "FastAPI", "DSP", "PID", "ESP32"],
+    shots: [
+      shot("daq-iot/panel", 1280, 800, "Acquisition chain: raw, conditioned and quantized traces with live controls"),
+      shot("daq-iot/spectrum", 1140, 516, "1024-point FFT with shaft-harmonic and bearing-defect markers", "contain"),
+      shot("daq-iot/converter", 1140, 403, "Converter sweep: measured SNR and ENOB against 6.02N + 1.76", "contain"),
+    ],
     body: (
       <>
         An IoT data acquisition system built in software <b>all the way down to the ADC</b>: real
@@ -79,6 +108,9 @@ export const PROJECTS = [
     repo: "exam-gate-Claude-Skill-",
     meta: "claude skill",
     tags: ["Claude Skills", "Python", ".docx", "verification"],
+    shots: [
+      shot("exam-gate/checker", 1182, 499, "The checker failing a draft pack, then passing the fixed one", "contain"),
+    ],
     body: (
       <>
         Turns past papers, syllabi and notes into a ranked exam study pack, then <b>refuses to ship it
@@ -93,6 +125,7 @@ export const PROJECTS = [
     repo: "Chatbot",
     demo: "https://chatbot-aykhziasddpumss5ksjaof.streamlit.app/",
     tags: ["Python", "Streamlit", "OpenRouter"],
+    shots: [shot("chatbot/models", 1280, 800, "Model picker: DeepSeek, GPT-4o mini, Claude, Llama, Gemini")],
     body: (
       <>
         A multi-model chat app on Streamlit and OpenRouter. Switch between <b>DeepSeek, GPT-4o mini,
@@ -105,6 +138,8 @@ export const PROJECTS = [
     title: "WeatherApp",
     repo: "WeatherApp",
     tags: ["Java", "Swing", "OpenWeatherMap"],
+    ratio: "984 / 706",
+    shots: [shot("weatherapp/themes", 984, 706, "Light and dark themes")],
     body: (
       <>
         Desktop weather client in Java Swing. Current conditions plus a five-day forecast, location
@@ -117,6 +152,11 @@ export const PROJECTS = [
     title: "Job-portal",
     repo: "Job-portal",
     tags: ["Java", "Swing", "MySQL"],
+    ratio: "4 / 3",
+    shots: [
+      shot("job-portal/employer", 800, 600, "Employer dashboard: post, edit and review jobs"),
+      shot("job-portal/seeker", 800, 600, "Job seeker dashboard: browse and apply"),
+    ],
     body: (
       <>
         A two-sided job portal — seekers and employers — with posting, browsing, and application
@@ -132,6 +172,8 @@ export const PROJECTS = [
     wide: true,
     meta: "data engineering",
     tags: ["Python", "data engineering", "Bengali script", "nutrition"],
+    ratio: "1280 / 511",
+    shots: [shot("dataset/bd-food", 1280, 511, "A sample of rows from bd_food.csv")],
     body: (
       <>
         A dataset I built because it didn't exist: <b>250 Bangladeshi foods across 24 columns</b> — a
@@ -145,6 +187,11 @@ export const PROJECTS = [
 export const THESIS = {
   repo: "physician-supervised-health-system",
   tags: ["FastAPI", "SQLAlchemy", "Next.js", "TypeScript", "scikit-learn", "LLM OCR"],
+  shots: [
+    shot("thesis/assessment", 1280, 800, "Assessment: findings, safety exclusions and a Bangladeshi diet plan"),
+    shot("thesis/queue", 1280, 800, "Review queue: nothing reaches a patient until a doctor approves it"),
+    shot("thesis/report", 1280, 800, "The physician-approved patient report"),
+  ],
   guarantees: [
     { k: "no LLM in clinical logic", v: "An AST-scan test fails the build if the rule engine ever imports the LLM module." },
     { k: "contraindications gated", v: "Unsafe foods are filtered out before anything gets ranked." },

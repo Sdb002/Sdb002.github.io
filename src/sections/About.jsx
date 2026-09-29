@@ -1,14 +1,16 @@
+import Reveal from "../components/Reveal.jsx";
+
 export default function About() {
   return (
     <section id="about" className="section">
       <div className="wrap">
-        <p className="eyebrow">~/about</p>
+        <Reveal as="p" className="eyebrow">~/about</Reveal>
         <div className="about-grid">
-          <p className="about-text">
+          <Reveal as="p" className="about-text">
             I learn by building things that are slightly too hard, then taking them further than
             the assignment asked for.
-          </p>
-          <div className="about-side">
+          </Reveal>
+          <Reveal className="about-side" delay={140}>
             <p>
               Most of my work lives at the systems level: a C analyzer that parses source into an
               AST and estimates Big-O, a Linux process monitor that suspends and kills rogue
@@ -20,7 +22,7 @@ export default function About() {
               on physician-supervised diagnostic systems. I build the whole thing: parser, backend,
               model integration, and the desktop or web surface on top.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

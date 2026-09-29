@@ -1,4 +1,5 @@
 import { GITHUB_URL, LANG_COLORS } from "../data.jsx";
+import Reveal from "./Reveal.jsx";
 
 const STATUS_TEXT = {
   loading: "fetching from api.github.com…",
@@ -21,8 +22,8 @@ export default function LiveRepos({ repos, total, status }) {
 
       {repos.length > 0 && (
         <div className="repo-grid">
-          {repos.map((r) => (
-            <a className="repo-card" key={r.name} href={r.url} target="_blank" rel="noopener noreferrer">
+          {repos.map((r, k) => (
+            <Reveal as="a" delay={(k % 4) * 70} className="repo-card" key={r.name} href={r.url} target="_blank" rel="noopener noreferrer">
               <div className="rc-top">
                 <span className="rc-name">{r.name}</span>
                 <span className="arr" aria-hidden="true">↗</span>
@@ -40,7 +41,7 @@ export default function LiveRepos({ repos, total, status }) {
                 {r.stars > 0 && <span>★ {r.stars}</span>}
                 {r.pushedAt && <span>updated {monthYear(r.pushedAt)}</span>}
               </div>
-            </a>
+            </Reveal>
           ))}
         </div>
       )}
