@@ -1,19 +1,20 @@
+import Reveal from "../components/Reveal.jsx";
 import { CONTACT } from "../data.jsx";
 
 export default function Contact() {
   return (
     <footer id="contact">
       <div className="foot-inner">
-        <div className="foot-lead">
+        <Reveal className="foot-lead">
           <p className="eyebrow">~/contact</p>
           <div className="foot-name">Let's build<br />something<span className="accent">.</span></div>
           <p className="foot-sub">
             <b>Shuvro Dev Biswas</b><br />
             Fullstack AI engineer · open to freelance &amp; collaboration
           </p>
-        </div>
+        </Reveal>
 
-        <aside className="panel contact-panel" aria-label="Contact">
+        <Reveal as="aside" className="panel contact-panel" aria-label="Contact" delay={140}>
           <div className="panel-bar">
             <span className="dot" /><span className="dot" /><span className="dot" />
             <span className="t">contact — say hello</span>
@@ -35,7 +36,7 @@ export default function Contact() {
               );
             })}
           </div>
-        </aside>
+        </Reveal>
       </div>
       <div className="foot-base">built with react, vite &amp; a canvas signature</div>
     </footer>

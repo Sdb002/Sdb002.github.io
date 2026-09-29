@@ -1,4 +1,5 @@
 import LiveRepos from "../components/LiveRepos.jsx";
+import Reveal from "../components/Reveal.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
 import { GITHUB_USER, HIDDEN_REPOS, PROJECTS, REPO_SNAPSHOT } from "../data.jsx";
 import { useGitHubRepos } from "../hooks/useGitHubRepos.js";
@@ -11,7 +12,7 @@ export default function Work() {
   return (
     <section id="work" className="section">
       <div className="wrap">
-        <p className="eyebrow">~/work</p>
+        <Reveal as="p" className="eyebrow">~/work</Reveal>
         <div className="work-grid">
           {PROJECTS.map((p, i) => (
             <ProjectCard
@@ -19,6 +20,7 @@ export default function Work() {
               p={p}
               idx={String(i + 1).padStart(2, "0")}
               stars={p.path ? 0 : stars.get(p.repo.toLowerCase())}
+              delay={p.featured || p.wide ? 0 : ((i - 1) % 2) * 110}
             />
           ))}
         </div>
