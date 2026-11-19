@@ -186,6 +186,7 @@ export const PROJECTS = [
 
 export const THESIS = {
   repo: "physician-supervised-health-system",
+  video: { id: "FuxZCczwg9w", caption: "Demo: the system end to end" },
   tags: ["FastAPI", "SQLAlchemy", "Next.js", "TypeScript", "scikit-learn", "LLM OCR"],
   shots: [
     shot("thesis/assessment", 1280, 800, "Assessment: findings, safety exclusions and a Bangladeshi diet plan"),

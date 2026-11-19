@@ -1,5 +1,6 @@
 import Gallery from "../components/Gallery.jsx";
 import Reveal from "../components/Reveal.jsx";
+import VideoPlayer from "../components/VideoPlayer.jsx";
 import { THESIS, repoUrl } from "../data.jsx";
 
 export default function Research() {
@@ -26,6 +27,13 @@ export default function Research() {
             </div>
             <Gallery shots={THESIS.shots} label="Physician-supervised health system" />
           </div>
+          <Reveal className="research-video">
+            <VideoPlayer
+              id={THESIS.video.id}
+              caption={THESIS.video.caption}
+              title="A Physician-Supervised, AI-Powered Diagnostic & Personalized Health Recommendation System — demo"
+            />
+          </Reveal>
           <ul className="guarantees">
             {THESIS.guarantees.map((g, k) => (
               <Reveal as="li" key={g.k} delay={k * 110}>
