@@ -4,7 +4,7 @@ export const GITHUB_USER = "Sdb002";
 export const GITHUB_URL = `https://github.com/${GITHUB_USER}`;
 export const repoUrl = (name) => `${GITHUB_URL}/${name}`;
 
-export const NAV_LINKS = ["research", "about", "stack", "work"];
+export const NAV_LINKS = ["about", "research", "stack", "work"];
 
 export const STATUS = [
   { k: "location", v: "Bangladesh" },
