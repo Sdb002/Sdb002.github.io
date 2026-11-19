@@ -12,10 +12,10 @@ export default function App() {
       <Nav />
       <Hero />
       <main>
+        <Research />
         <About />
         <Stack />
         <Work />
-        <Research />
       </main>
       <Contact />
     </>
