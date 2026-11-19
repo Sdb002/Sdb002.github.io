@@ -165,20 +165,22 @@ export const PROJECTS = [
     ),
   },
   {
-    title: "Bangladeshi Nutritional Dataset",
+    title: "Bangladeshi Health Datasets",
     repo: "physician-supervised-health-system",
-    path: "tree/HEAD/data/food",
-    linkLabel: "data/food",
+    path: "tree/HEAD/data",
+    linkLabel: "data/",
     wide: true,
     meta: "data engineering",
-    tags: ["Python", "data engineering", "Bengali script", "nutrition"],
+    tags: ["Python", "data engineering", "Bengali script", "nutrition", "validation"],
     ratio: "1280 / 511",
     shots: [shot("dataset/bd-food", 1280, 511, "A sample of rows from bd_food.csv")],
     body: (
       <>
-        A dataset I built because it didn't exist: <b>250 Bangladeshi foods across 24 columns</b> — a
-        full micronutrient panel, glycemic index values, and food names in Bengali script. It's the
-        groundwork for the diagnostic recommendation system in my thesis.
+        Datasets I built because they didn't exist: <b>672 foods</b> with a full nutrient panel and
+        Bengali names (compiled from FCTB 2013, IFCT 2017 and USDA), <b>250 Bangladeshi home
+        recipes</b> scored by how often households cook them, and <b>408 exercises</b> rated safe or
+        unsafe per condition from 88 cited sources. Each has a converter that logs every corrected
+        cell, a validator, and dated snapshots. They feed the recommenders in my thesis.
       </>
     ),
   },
@@ -186,17 +188,23 @@ export const PROJECTS = [
 
 export const THESIS = {
   repo: "physician-supervised-health-system",
+  demo: "https://physician-supervised-health-system.vercel.app",
   video: { id: "FuxZCczwg9w", caption: "Demo: the system end to end" },
-  tags: ["FastAPI", "SQLAlchemy", "Next.js", "TypeScript", "scikit-learn", "LLM OCR"],
+  tags: ["FastAPI", "SQLAlchemy", "PostgreSQL", "Next.js", "TypeScript", "scikit-learn", "RapidOCR", "Vercel"],
   shots: [
     shot("thesis/assessment", 1280, 800, "Assessment: findings, safety exclusions and a Bangladeshi diet plan"),
     shot("thesis/queue", 1280, 800, "Review queue: nothing reaches a patient until a doctor approves it"),
     shot("thesis/report", 1280, 800, "The physician-approved patient report"),
   ],
+  stats: [
+    { k: "0.999", v: "food-ranking Spearman ρ on held-out patient types (nested CV), vs 0.844 for the formula" },
+    { k: "99.7%", v: "lab-slip fields read right by the local OCR rules across 351 damaged test photos" },
+    { k: "3 roles", v: "admin, doctor and patient dashboards, in Bangla and English" },
+  ],
   guarantees: [
     { k: "no LLM in clinical logic", v: "An AST-scan test fails the build if the rule engine ever imports the LLM module." },
     { k: "contraindications gated", v: "Unsafe foods are filtered out before anything gets ranked." },
-    { k: "physician sign-off", v: "The report endpoint returns 403 until a doctor has approved it." },
+    { k: "physician sign-off", v: "The report endpoint returns 403 until a doctor approves it, and the patient reads exactly the wording the doctor approved." },
   ],
 };
 
@@ -212,7 +220,7 @@ export const CONTACT = [
  * has a hand-written card or section, plus this site's own repo.
  */
 export const HIDDEN_REPOS = new Set(
-  [...PROJECTS.map((p) => p.repo), THESIS.repo, `${GITHUB_USER}.github.io`].map((n) => n.toLowerCase())
+  [...PROJECTS.map((p) => p.repo), THESIS.repo, "physician", `${GITHUB_USER}.github.io`].map((n) => n.toLowerCase())
 );
 
 /*
@@ -221,10 +229,10 @@ export const HIDDEN_REPOS = new Set(
  * useGitHubRepos' output.
  */
 export const REPO_SNAPSHOT = [
-  { name: "physician-supervised-health-system", description: null, language: "TypeScript", stars: 0, pushedAt: "2026-09-24T02:37:18Z" },
+  { name: "physician-supervised-health-system", description: null, language: "Python", stars: 0, pushedAt: "2026-11-17T15:58:35Z" },
   { name: "exam-gate-Claude-Skill-", description: "Ranks and writes exam study packs from source material gated by an automated check + visual review before anything ships, not just generated and handed over.", language: null, stars: 0, pushedAt: "2026-08-29T03:55:03Z" },
   { name: "daq-iot", description: null, language: "HTML", stars: 0, pushedAt: "2026-07-27T04:06:06Z" },
-  { name: "Sdb002.github.io", description: null, language: "HTML", stars: 0, pushedAt: "2026-06-24T12:55:36Z" },
+  { name: "Sdb002.github.io", description: null, language: "JavaScript", stars: 0, pushedAt: "2026-11-19T04:40:27Z" },
   { name: "ProcessGuard_Pro", description: "A powerful Linux Task Manager on steroids — monitor, analyze, alert, suspend, resume, and automatically terminate rogue processes with customizable rules", language: "Python", stars: 1, pushedAt: "2026-06-14T13:35:05Z" },
   { name: "chatbot-1", description: null, language: "Python", stars: 0, pushedAt: "2026-05-24T07:00:12Z" },
   { name: "Chatbot", description: null, language: "Python", stars: 0, pushedAt: "2026-05-24T06:58:03Z" },
