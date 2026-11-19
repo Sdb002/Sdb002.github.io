@@ -4,7 +4,7 @@ export const GITHUB_USER = "Sdb002";
 export const GITHUB_URL = `https://github.com/${GITHUB_USER}`;
 export const repoUrl = (name) => `${GITHUB_URL}/${name}`;
 
-export const NAV_LINKS = ["about", "stack", "work", "research"];
+export const NAV_LINKS = ["research", "about", "stack", "work"];
 
 export const STATUS = [
   { k: "location", v: "Bangladesh" },
@@ -192,9 +192,12 @@ export const THESIS = {
   video: { id: "FuxZCczwg9w", caption: "Demo: the system end to end" },
   tags: ["FastAPI", "SQLAlchemy", "PostgreSQL", "Next.js", "TypeScript", "scikit-learn", "RapidOCR", "Vercel"],
   shots: [
-    shot("thesis/assessment", 1280, 800, "Assessment: findings, safety exclusions and a Bangladeshi diet plan"),
-    shot("thesis/queue", 1280, 800, "Review queue: nothing reaches a patient until a doctor approves it"),
-    shot("thesis/report", 1280, 800, "The physician-approved patient report"),
+    shot("thesis/review", 1600, 1000, "Doctor's review: findings, the week's diet plan, and the sign-off bar"),
+    shot("thesis/preview", 1600, 1000, "The doctor reads the patient's exact report before approving it"),
+    shot("thesis/report", 1600, 1000, "The approved health plan, signed by the physician"),
+    shot("thesis/dashboard", 1600, 1000, "Doctor's dashboard: highest-risk patients first"),
+    shot("thesis/today-bn", 1600, 1000, "Patient's daily checklist, in Bangla"),
+    shot("thesis/exercise", 1600, 1000, "Patient's exercise plan, ranked after the safety gate"),
   ],
   stats: [
     { k: "0.999", v: "food-ranking Spearman ρ on held-out patient types (nested CV), vs 0.844 for the formula" },
